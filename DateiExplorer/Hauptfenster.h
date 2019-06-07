@@ -46,6 +46,7 @@ namespace DateiExplorer {
 	private: System::Windows::Forms::ToolStripMenuItem^  toolStripMenu_DateiOeffnen;
 	private: System::Windows::Forms::Button^  button_DateiSpeichern;
 	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog1;
+	private: System::Windows::Forms::Button^  button_Reflection;
 
 	private:
 		/// <summary>
@@ -70,6 +71,7 @@ namespace DateiExplorer {
 			this->toolStripMenu_DateiOeffnen = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->button_DateiSpeichern = (gcnew System::Windows::Forms::Button());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->button_Reflection = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -132,12 +134,23 @@ namespace DateiExplorer {
 			this->button_DateiSpeichern->UseVisualStyleBackColor = true;
 			this->button_DateiSpeichern->Click += gcnew System::EventHandler(this, &Hauptfenster::button_DateiSpeichern_Click);
 			// 
+			// button_Reflection
+			// 
+			this->button_Reflection->Location = System::Drawing::Point(582, 266);
+			this->button_Reflection->Name = L"button_Reflection";
+			this->button_Reflection->Size = System::Drawing::Size(113, 23);
+			this->button_Reflection->TabIndex = 5;
+			this->button_Reflection->Text = L"Refection";
+			this->button_Reflection->UseVisualStyleBackColor = true;
+			this->button_Reflection->Click += gcnew System::EventHandler(this, &Hauptfenster::button_Reflection_Click);
+			// 
 			// Hauptfenster
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::LightSlateGray;
 			this->ClientSize = System::Drawing::Size(709, 465);
+			this->Controls->Add(this->button_Reflection);
 			this->Controls->Add(this->button_DateiSpeichern);
 			this->Controls->Add(this->button_DateiOeffnen);
 			this->Controls->Add(this->textBox_Dateiinhalt);
@@ -159,5 +172,6 @@ namespace DateiExplorer {
 	private: System::Void button_DateiOeffnen_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void toolStripMenu_DateiOeffnen_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void button_DateiSpeichern_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void button_Reflection_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }

@@ -1,7 +1,6 @@
 #include "Hauptfenster.h"
 
 
-
 System::Void DateiExplorer::Hauptfenster::button_FarbeWaehlen_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	System::Windows::Forms::DialogResult result = colorDialog1->ShowDialog();
@@ -62,7 +61,7 @@ System::Void DateiExplorer::Hauptfenster::toolStripMenu_DateiOeffnen_Click(Syste
 System::Void DateiExplorer::Hauptfenster::button_DateiSpeichern_Click(System::Object^  sender, System::EventArgs^  e)
 {
 
-	saveFileDialog1->Filter = "Textdatei | *.txt | dsDatei| *.ds";
+	saveFileDialog1->Filter = "Textdatei | *.txt | dsDatei | *.ds";
 
 	System::Windows::Forms::DialogResult result = saveFileDialog1->ShowDialog();
 
@@ -78,6 +77,38 @@ System::Void DateiExplorer::Hauptfenster::button_DateiSpeichern_Click(System::Ob
 		{
 			MessageBox::Show("Du Idiot, lass das!!! \r\n");
 			Console::WriteLine(exception);
+		}
+	}
+}
+
+
+System::Void DateiExplorer::Hauptfenster::button_Reflection_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	// zur Laufzeit Typinformationen herausfinden
+	Type^ datentyp = sender->GetType();
+
+	// Voller Name des Datentypes
+	textBox_Dateiinhalt->Text = datentyp->FullName;
+	textBox_Dateiinhalt->Text += "\r\n" + datentyp->Assembly->ToString();
+
+	array<System::Reflection::MemberInfo^>^ attribute = datentyp->GetMembers();
+	
+	for each (System::Reflection::MemberInfo^ attribute in attribute)
+	{
+		textBox_Dateiinhalt->Text += attribute->Name + "\r\n";
+	}
+
+
+	array<System::Reflection::MemberInfo^>^ methoden = datentyp->GetMethods();
+
+	for each (System::Reflection::MemberInfo^ methode in methoden)
+	{
+		textBox_Dateiinhalt->Text += methode->Name + "\r\n";
+
+		if (methode->Name == "PerformClick")
+		{
+			// ruft sich selbst immer wider auf
+			//methode->Invoke(sender, nullptr);
 		}
 	}
 }
